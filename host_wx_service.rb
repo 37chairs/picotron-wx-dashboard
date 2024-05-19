@@ -7,20 +7,26 @@ module RubyPicoBridge
     end
 
     def get_wx_data
+      # todo: fetch from a weather API or from local home assistant
       @wx_data = {
-        temperature: rand(10..30),
-        humidity: rand(0..100),
-        pressure: rand(1000..1100),
-        wind_speed: rand(0..30),
-        wind_direction: rand(0..360),
-        rain: rand(0..10),
-        uv: rand(0..10),
-        solar_radiation: rand(0..1000)
+        time_hour: Time.now.strftime('%H').to_i,
+        time_minute: Time.now.strftime('%M').to_i,
+        time_second: Time.now.strftime('%S').to_i,
+        temperature: 55,
+        humidity: 77,
+        pressure: 1017,
+        wind_speed: 8,
+        wind_direction: 12,
+        rain: 0.02,
+        uv: 1
       }
     end
 
     def format_wx_data
       payload = []
+      payload << format('%02x', @wx_data[:time_hour] & 0xFF) # HH
+      payload << format('%02x', @wx_data[:time_minute] & 0xFF) # MM
+      payload << format('%02x', @wx_data[:time_second] & 0xFF) # SS
       payload << format('%02x', @wx_data[:temperature] & 0xFF)  # Ensure it's two characters
       payload << format('%02x', @wx_data[:humidity] & 0xFF)     # Ensure it's two characters
       payload << format('%04x', @wx_data[:pressure] & 0xFFFF)   # Ensure it's four characters for pressure
@@ -45,7 +51,7 @@ module RubyPicoBridge
       while true
         get_wx_data
         store_wx_data
-        sleep 900
+        sleep 15
       end
     end
   end
