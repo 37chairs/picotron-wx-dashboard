@@ -2,7 +2,19 @@
 
 ## host_wx_service.rb
 
-Runs on host computer and fetches wx data from an API, then writes to a shared location where Picotron can read it. 
+Runs on host computer and fetches wx data from an API, then writes to a shared location where Picotron can read it.  
+We could do this as POD (Picotron Object Data) compressed as lz4, but I prefer simple hex strings.  Maybe if other people
+touch this someday, we'll switch to POD or maybe even our own TLV format, though I don't really want to write a TLV 
+parser in lua. 
+
+Format: (Quickly changing)
+- byte 1: hour
+- byte 2: minute
+- byte 3: seconds
+- byte 4: temperature
+- byte 5: humidity
+- byte 6 - 7: pressure
+- byte 8: wind speed
 
 ## main.lua
 
