@@ -64,7 +64,6 @@ function text_view.draw()
 
     local updated_timestamp = convert_timestamp(wx.data.currently.time, wx.data.offset)
     print("Updated: " .. string.format("%02d",updated_timestamp.hour) .. ":" ..  string.format("%02d",updated_timestamp.min), 5, 250, 7)
-    print("(" .. wx.last_update .. ")", 105, 250)
     print("Elevation: " .. wx.data.elevation, 135, 250)
     print("Lat / Lon: " .. wx.data.latitude .. "," .. wx.data.longitude, 5, 260)
 

@@ -4,18 +4,13 @@ This is a simple wx dashboard for the Picotron.  It reads wx data from a shared 
 
 ![Picotron wx dashboard](https://github.com/37chairs/picotron-wx-dashboard/blob/master/doc/dashboard_preview.png?raw=true)
 
-## host_wx_service.rb
-
-Runs on host computer and fetches wx data from an API, then writes to a shared location where Picotron can read it 
-as a lua table.
-
 ## main.lua
 
 Runs on Picotron, reads wx data from shared location and displays it on the screen.
 
 ## Todo
 
-- [ ] Fetch wx data from an API
-- [ ] Add more wx data to display
-- [ ] Add forecast
+- [X] Fetch wx data from an API
+- [X] Add more wx data to display
+- [X] Add forecast
 - [ ] Add pixel art for picotron display of wx dashboard
